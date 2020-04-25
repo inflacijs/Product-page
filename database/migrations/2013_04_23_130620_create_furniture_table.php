@@ -14,7 +14,7 @@ class CreateFurnitureTable extends Migration
     public function up()
     {
         Schema::create('furniture', function (Blueprint $table) {
-            $table->foreignId('id');
+            $table->bigIncrements('id');
             $table->integer('height')->nullable();
             $table->integer('width')->nullable();
             $table->integer('length')->nullable();

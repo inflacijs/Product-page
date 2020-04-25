@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $guarded = [];
+
     public function productProps()
     {
-        return $this->morphTo('productprops');
+        return $this->morphTo('productprops'); // 
     }
 
 }

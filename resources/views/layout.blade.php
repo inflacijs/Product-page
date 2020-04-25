@@ -8,6 +8,11 @@
     <title>Product page</title>
     
 </head>
+<style>
+    .inv {
+        display: none;
+    }
+        </style>
 <body>
     @yield('navbar')
 
@@ -27,5 +32,6 @@
         </div>
     </footer>
    <script src="/products/public/js/app.js"></script> 
+   <script src="/products/public/js/dropdown.js"></script> 
 </body>
 </html>

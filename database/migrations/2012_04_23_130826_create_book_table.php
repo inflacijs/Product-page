@@ -14,7 +14,7 @@ class CreateBookTable extends Migration
     public function up()
     {
         Schema::create('books', function (Blueprint $table) {
-            $table->foreignId('id');
+            $table->bigIncrements('id');
             $table->integer('weight')->nullable();
          
         });

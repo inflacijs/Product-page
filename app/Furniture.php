@@ -13,4 +13,9 @@ class Furniture extends Model
     {
         return $this->morphOne('App\Product', 'productprops');
     }
+
+    public function getDimensionsAttribute()
+    {
+        return  'Dimension: ' . $this->height . 'x' . $this->width . 'x' . $this->length;
+    }
 }

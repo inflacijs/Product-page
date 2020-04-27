@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
+use App\Disc;
 use App\Product;
 use App\Furniture;
 use Illuminate\Http\Request;
@@ -10,7 +12,8 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        return view('products.index');
+        $products = Product::all();
+        return view('products.index', ['products' => $products]);
     }
     public function create()
     {
@@ -20,7 +23,7 @@ class ProductsController extends Controller
     public function store()
     {
         
-                if(request('type') == 'content_1')
+                if(request('type') == 'DVD_disc')
         {
                 $discAttributes = request()->validate([
                     'size' => 'integer'
@@ -28,7 +31,7 @@ class ProductsController extends Controller
                 
                 $productType = Disc::create($discAttributes);
                 
-        }elseif(request('type') == 'content_2')
+        }elseif(request('type') == 'Furniture')
         {
                 $furnitureAttributes = request()->validate([
                     'width' => 'integer',
@@ -38,7 +41,7 @@ class ProductsController extends Controller
             
                 $productType = Furniture::create($furnitureAttributes);
 
-        }elseif(request('type') == 'content_3')
+        }elseif(request('type') == 'Book')
         {
                 $bookAttributes = request()->validate([
                     'weight' => 'integer',
@@ -63,4 +66,16 @@ class ProductsController extends Controller
 
         return redirect('/products');
     }
+
+    public function destroy()
+    {
+        dd(request());
+    }
+    
+     // paraugs
+    // public function destroy() {
+    //     $checked = Request::input('checked',[]);
+    //    Todo::whereIn("id",$checked)->delete(); 
+    //  }
+    
 }

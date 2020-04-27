@@ -14,7 +14,7 @@
                             <a class="dropdown-item" href="#">Mass delete action</a>   
                         </div>
                     </div>
-                    {{-- <button class="btn btn-secondary" type="submit" form="checkForm">Apply</button> --}}
+                    <button class="btn btn-secondary" type="submit" form="checkForm" >Apply</button>
                 </div>
         
     </div>
@@ -24,13 +24,11 @@
 @section('content')
 
 <div class="container">
-    <form id="checkForm" method="POST"action="/products/public/products/delete">
+    <form id="checkForm" method="POST" action="/products/public/products/delete">
+        @csrf
+        @method('DELETE')
         <div class="row">
 
-
-            
-                @csrf
-                @method('DELETE')
             @forelse ($products as $product) 
                 @include('_product')
                 @empty
@@ -39,7 +37,7 @@
 
             
         </div>
-        <button class="btn btn-secondary" type="submit" form="checkForm">Apply</button>
+        
     </form>
 </div>
 

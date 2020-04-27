@@ -60,22 +60,21 @@ class ProductsController extends Controller
         
         $product = new Product($productAttributes);
         $productType->product()->save($product);
-        
-
-
 
         return redirect('/products');
     }
 
     public function destroy()
     {
-        dd(request());
+        $deleteArray = request()->input('delete');
+        
+        foreach($deleteArray as $deleteItem)
+        {
+            Product::destroy($deleteItem);
+        }
+        
+        return back();
     }
     
-     // paraugs
-    // public function destroy() {
-    //     $checked = Request::input('checked',[]);
-    //    Todo::whereIn("id",$checked)->delete(); 
-    //  }
     
 }

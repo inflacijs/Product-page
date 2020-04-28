@@ -26,7 +26,7 @@ class ProductsController extends Controller
                 if(request('type') == 'DVD_disc')
         {
                 $discAttributes = request()->validate([
-                    'size' => 'integer'
+                    'size' => 'integer|required'
                 ]);
                 
                 $productType = Disc::create($discAttributes);
@@ -34,9 +34,9 @@ class ProductsController extends Controller
         }elseif(request('type') == 'Furniture')
         {
                 $furnitureAttributes = request()->validate([
-                    'width' => 'integer',
-                    'height' => 'integer',
-                    'length' => 'integer'
+                    'width' => 'required|integer',
+                    'height' => 'required|integer',
+                    'length' => 'required|integer'
             ]);
             
                 $productType = Furniture::create($furnitureAttributes);
@@ -44,7 +44,7 @@ class ProductsController extends Controller
         }elseif(request('type') == 'Book')
         {
                 $bookAttributes = request()->validate([
-                    'weight' => 'integer',
+                    'weight' => 'required|integer',
         
             ]);
             
@@ -53,11 +53,14 @@ class ProductsController extends Controller
         }
 
         $productAttributes = request()->validate([
-            'sku' => 'required',
-            'name' => 'required',
-            'price' => 'required|integer'
+            'sku' => 'required|max:255|string',
+            'name' => 'required|max:255|string',
+            'price' => 'required|integer',
+            'type' => 'required'
         ]);
-        
+
+        array_pop($productAttributes); // 'type' is removed
+
         $product = new Product($productAttributes);
         $productType->product()->save($product);
 
@@ -68,12 +71,19 @@ class ProductsController extends Controller
     {
         $deleteArray = request()->input('delete');
         
-        foreach($deleteArray as $deleteItem)
-        {
-            Product::destroy($deleteItem);
+        if($deleteArray){
+            foreach($deleteArray as $deleteItem)
+            {
+                Product::destroy($deleteItem);
+            }
+            
+            return back();
         }
+    
+        return redirect()
+                ->back()
+                ->with('mass_delete', 'No items selected for mass delete!');
         
-        return back();
     }
     
     

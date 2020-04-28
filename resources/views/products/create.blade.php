@@ -1,3 +1,5 @@
+
+
 @extends ('layout')
 
 @section('navbar')
@@ -15,86 +17,164 @@
 <div class="container">
     <form method="POST" action="/products/public/products" id="new">
         @csrf
-        <div class="input-group mb-3 w-25">
+        <div class="input-group mt-4 col-lg-6 col-sm-9">
             <div class="input-group-prepend">
                 <span class="input-group-text">SKU </span>
             </div>
-            <input type="text" class="form-control" name="sku">
+            <input 
+                type="text" 
+                class="form-control @error('sku') is-invalid @enderror" 
+                name="sku"
+                value="{{old('sku')}}"
+                >
+                @error ('sku')
+                    <p class="alert alert-danger">{{$message}}</p>
+                @enderror
         </div>
-        <div class="input-group mb-3 w-25">
+        <div class="input-group mt-4 col-lg-6 col-sm-9">
             <div class="input-group-prepend">
                 <span class="input-group-text">Name</span>
             </div>
-            <input type="text" class="form-control" name="name">
+            <input 
+                type="text" 
+                class="form-control @error('name') is-invalid @enderror" 
+                name="name"
+                value="{{old('name')}}"
+            >
+            @error ('name')
+                <p class="alert alert-danger">{{$message}}</p>
+            @enderror
         </div>
-        <div class="input-group mb-3 w-25">
+        <div class="input-group mt-4 col-lg-6 col-sm-9">
             <div class="input-group-prepend">
                 <span class="input-group-text">Price </span>
             </div>
-            <input type="text" class="form-control" name="price">
+            <input 
+                type="text" 
+                class="form-control @error('price') is-invalid @enderror" 
+                name="price"
+                value="{{old('price')}}"
+            >
+          
         </div>
-        <div class="dropdown mb-4">
-            <select class="form-control w-25" id="target" name="type">
+
+        @error ('price')
+            <p class="alert col-lg-6 col-sm-9 alert-danger">{{$message}}</p>
+        @enderror
+
+        <p class="font-italic lead mt-3 pl-3">
+            Please specify a price in cents.
+            <br>
+            Only numbers accepted, no letters.
+        </p>
+
+        <div class="dropdown mt-4 pl-3">
+            <select 
+                class="form-control col-lg-4 col-sm-9  @error('type') is-invalid @enderror" 
+                id="target" 
+                name="type"
+            >
                 <option class="dropdown-item" value="">Choose a product type</option>
-                <option class="dropdown-item" value="DVD_disc">DVD disc</option>
-                <option class="dropdown-item" value="Furniture">Furniture</option>
-                <option class="dropdown-item" value="Book">Book</option>
+                <option class="dropdown-item" value="DVD_disc" {{ old('type') == "DVD_disc" ? 'selected' : '' }}>DVD disc</option>
+                <option class="dropdown-item" value="Furniture" {{ old('type') == "Furniture" ? 'selected' : '' }}>Furniture</option>
+                <option class="dropdown-item" value="Book" {{ old('type') == "Book" ? 'selected' : '' }}>Book</option>
             <select>
         </div>
 
-            {{-- <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                    Product type
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Link One</a>
-                    <a class="dropdown-item" href="#">Link Two</a>
-                    <a class="dropdown-item" href="#">Link Three</a>
-                </div>
-            </div> --}}
+        @error ('type')
+            <p class="alert col-lg-6 col-sm-9 alert-danger">{{$message}}</p>
+        @enderror
 
-        <div id="DVD_disc" class="inv">
-            <div class="input-group mb-3 w-50">
+
+        <div id="DVD_disc" class="{{ old('type') == "DVD_disc" ? "vis" : "inv"}}">
+            <div class="input-group mt-4 col-lg-6 col-sm-9">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Size </span>
                 </div>
-                <input type="text" class="form-control" name="size">
+                <input 
+                    type="text" 
+                    class="form-control @error('size') is-invalid @enderror" 
+                    name="size"
+                    value="{{old('size')}}"
+                >
             </div>
-            <p class="font-italic lead">
+            @error ('size')
+                <p class="alert col-lg-6 col-sm-9 alert-danger">{{$message}}</p>
+            @enderror
+            <p class="font-italic lead mt-3">
                 Please specify a disk size in megabytes.
                 <br>
                 Only numbers accepted, no letters.
             </p>
         </div>
 
-        <div id="Furniture" class="inv">
-            <div class="input-group mb-3 w-25">
+        <div id="Furniture" class="{{ old('type') == "Furniture" ? "vis" : "inv"}}">
+            <div class="input-group mt-4 col-lg-6 col-sm-9">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Height </span>
                 </div>
-                <input type="text" class="form-control" name="height">
+                <input 
+                    type="text" 
+                    class="form-control @error('height') is-invalid @enderror" 
+                    name="height"
+                    value="{{old('height')}}"
+                >
             </div>
-            <div class="input-group mb-3 w-25">
+            @error ('height')
+                <p class="alert col-lg-6 col-sm-9 alert-danger">{{$message}}</p>
+            @enderror
+            <div class="input-group mt-4 col-lg-6 col-sm-9">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Width </span>
                 </div>
-                <input type="text" class="form-control" name="width">
+                <input 
+                    type="text" 
+                    class="form-control @error('width') is-invalid @enderror" 
+                    name="width"
+                    value="{{old('width')}}"
+                >
             </div>
-            <div class="input-group mb-3 w-25">
+            @error ('width')
+                <p class="alert col-lg-6 col-sm-9 alert-danger">{{$message}}</p>
+            @enderror
+            <div class="input-group mt-4 col-lg-6 col-sm-9">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Length</span>
                 </div>
-                <input type="text" class="form-control" name="length">
+                <input 
+                    type="text" 
+                    class="form-control @error('length') is-invalid @enderror" 
+                    name="length"
+                    value="{{old('length')}}"
+                >
             </div>
+            @error ('length')
+                <p class="alert col-lg-6 col-sm-9 alert-danger">{{$message}}</p>
+            @enderror
+
+            <p class="font-italic lead mt-3">
+                Please provide dimenssions in HxWxL format. All fields is required.
+                <br>
+                Specify dimenssions in centimeters. Only numbers accepted, no letters.
+            </p>
+
         </div>
-        <div id="Book" class="inv">
-            <div class="input-group mb-3 w-25">
+        <div id="Book" class="{{ old('type') == "Book" ? "vis" : "inv"}}">
+            <div class="input-group mt-4 col-lg-6 col-sm-9">
             
                 <div class="input-group-prepend">
                     <span class="input-group-text">Weight</span>
                 </div>
-                <input type="text" class="form-control" name="weight">
+                <input 
+                    type="text" 
+                    class="form-control @error('weight') is-invalid @enderror" 
+                    name="weight"
+                    value="{{old('weight')}}"
+                >
             </div>
+            @error ('weight')
+                <p class="alert col-lg-6 col-sm-9 alert-danger">{{$message}}</p>
+            @enderror
             <p class="font-italic lead">
                 Please indicate the weight of the book in grams. 
                 <br>

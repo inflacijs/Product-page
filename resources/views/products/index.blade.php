@@ -1,3 +1,9 @@
+
+@if(Session::has('mass_delete'))
+    <div class="alert alert-danger text-center">
+        <em> {{ session('mass_delete') }}</em>
+    </div>
+@endif
 @extends('layout')
 
 @section('navbar')

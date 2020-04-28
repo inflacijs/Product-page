@@ -1,5 +1,3 @@
-
-
 @extends ('layout')
 
 @section('navbar')
@@ -192,10 +190,7 @@
 
 @endsection
 
-{{-- 
-@foreach ($errors->all() as $error)
-<div>{{ $error }}</div>
-@endforeach --}}
+
 
 
 

@@ -12,7 +12,7 @@
     .inv {
         display: none;
     }
-        </style>
+</style>
 <body>
     @yield('navbar')
 

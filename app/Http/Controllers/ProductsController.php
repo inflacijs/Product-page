@@ -23,32 +23,32 @@ class ProductsController extends Controller
     public function store()
     {
         
-                if(request('type') == 'DVD_disc')
+        if(request('type') == 'DVD_disc')
         {
-                $discAttributes = request()->validate([
+            $discAttributes = request()->validate([
                     'size' => 'integer|required'
                 ]);
                 
-                $productType = Disc::create($discAttributes);
+            $productType = Disc::create($discAttributes);
                 
         }elseif(request('type') == 'Furniture')
         {
-                $furnitureAttributes = request()->validate([
-                    'width' => 'required|integer',
-                    'height' => 'required|integer',
-                    'length' => 'required|integer'
+            $furnitureAttributes = request()->validate([
+                'width' => 'required|integer',
+                'height' => 'required|integer',
+                'length' => 'required|integer'
             ]);
             
-                $productType = Furniture::create($furnitureAttributes);
+            $productType = Furniture::create($furnitureAttributes);
 
         }elseif(request('type') == 'Book')
         {
-                $bookAttributes = request()->validate([
+             $bookAttributes = request()->validate([
                     'weight' => 'required|integer',
         
             ]);
             
-                $productType = Book::create($bookAttributes);
+            $productType = Book::create($bookAttributes);
 
         }
 

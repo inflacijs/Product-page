@@ -17,7 +17,7 @@
 <div class="container">
     <form method="POST" action="/products/public/products" id="new">
         @csrf
-        <div class="input-group mt-4 col-lg-6 col-sm-9">
+        <div class="input-group mt-4 col-lg-6 col-sm-9 p-0">
             <div class="input-group-prepend">
                 <span class="input-group-text">SKU </span>
             </div>
@@ -27,11 +27,14 @@
                 name="sku"
                 value="{{old('sku')}}"
                 >
-                @error ('sku')
-                    <p class="alert alert-danger">{{$message}}</p>
-                @enderror
-        </div>
-        <div class="input-group mt-4 col-lg-6 col-sm-9">
+                
+        </div>  
+
+        @error ('sku')
+            <p class="alert alert-danger col-lg-6 col-sm-9">{{$message}}</p>
+        @enderror
+
+        <div class="input-group mt-4 col-lg-6 col-sm-9 p-0">
             <div class="input-group-prepend">
                 <span class="input-group-text">Name</span>
             </div>
@@ -41,11 +44,14 @@
                 name="name"
                 value="{{old('name')}}"
             >
-            @error ('name')
-                <p class="alert alert-danger">{{$message}}</p>
-            @enderror
+           
         </div>
-        <div class="input-group mt-4 col-lg-6 col-sm-9">
+
+        @error ('name')
+            <p class="alert alert-danger col-lg-6 col-sm-9">{{$message}}</p>
+        @enderror
+
+        <div class="input-group mt-4 col-lg-6 col-sm-9 p-0">
             <div class="input-group-prepend">
                 <span class="input-group-text">Price </span>
             </div>
@@ -68,7 +74,7 @@
             Only numbers accepted, no letters.
         </p>
 
-        <div class="dropdown mt-4 pl-3">
+        <div class="dropdown mt-4">
             <select 
                 class="form-control col-lg-4 col-sm-9  @error('type') is-invalid @enderror" 
                 id="target" 
@@ -87,7 +93,7 @@
 
 
         <div id="DVD_disc" class="{{ old('type') == "DVD_disc" ? "vis" : "inv"}}">
-            <div class="input-group mt-4 col-lg-6 col-sm-9">
+            <div class="input-group mt-4 col-lg-6 col-sm-9 p-0">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Size </span>
                 </div>
@@ -109,7 +115,7 @@
         </div>
 
         <div id="Furniture" class="{{ old('type') == "Furniture" ? "vis" : "inv"}}">
-            <div class="input-group mt-4 col-lg-6 col-sm-9">
+            <div class="input-group mt-4 col-lg-6 col-sm-9 p-0">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Height </span>
                 </div>
@@ -123,7 +129,7 @@
             @error ('height')
                 <p class="alert col-lg-6 col-sm-9 alert-danger">{{$message}}</p>
             @enderror
-            <div class="input-group mt-4 col-lg-6 col-sm-9">
+            <div class="input-group mt-4 col-lg-6 col-sm-9 p-0">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Width </span>
                 </div>
@@ -137,7 +143,7 @@
             @error ('width')
                 <p class="alert col-lg-6 col-sm-9 alert-danger">{{$message}}</p>
             @enderror
-            <div class="input-group mt-4 col-lg-6 col-sm-9">
+            <div class="input-group mt-4 col-lg-6 col-sm-9 p-0">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Length</span>
                 </div>
